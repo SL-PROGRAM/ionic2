@@ -1,0 +1,74 @@
+<p>{{binding}}</p>
+
+<p>Formulaire -- binding dans les deux sens</p>
+<input type="text" [(ngModel)]="binding"/>
+
+<button (click)="clickStartButton()">Test</button>
+<ion-list>
+    <ion-item>
+        <ion-label position="floating">Nom </ion-label>
+        <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Année </ion-label>
+        <ion-input type="number" [(ngModel)]="year"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Type </ion-label>
+        <ion-select [(ngModel)]="type">
+            <ion-select-option value="">Tous</ion-select-option>
+            <ion-select-option value="movie">Film</ion-select-option>
+            <ion-select-option value="series">Série</ion-select-option>
+            <ion-select-option value="episode">Episode</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-button expand="full" (click)=rechercher()>Rechercher</ion-button>
+    <div *ngIf="error">
+        <p>
+            {{error}}
+        </p>
+    </div>
+</ion-list>
+<ion-list *ngIf="films && films.length > 0">
+    <ion-card *ngFor="let film of films" [routerLink]="['/details', film.imdbID]">
+        <img [src]="film.Poster">
+        <ion-card-header>{{film.Title}}</ion-card-header>
+        <ion-card-content>{{film.Year}} </ion-card-content>
+    </ion-card>
+</ion-list>
+
+<!-- <p>Titre
+<input type="text" [(ngModel)]="title"/>
+</p>
+
+<p>Année
+    <input type="number" [(ngModel)]="year"/>
+</p>
+
+<p>Type
+    <select [(ngModel)]="type">
+        <option value="">Tous</option>
+        <option value="movie">Film</option>
+        <option value="Series">Séries</option>
+        <option value="episode">épisode</option>
+    </select>
+</p>
+<button (click)="rechercher()">rechercher</button>
+<div *ngIf="error">
+    <p>
+        {{error}}
+    </p>
+</div>
+<div *ngIf="films">
+    <div *ngFor="let film of films">
+        <p>
+            {{film.Title}}
+        </p>
+        <p>
+            {{film.Year}}
+        </p>
+        <p>
+            <img [src]="film.Poster">
+        </p>
+    </div>
+</div> -->
